@@ -1,0 +1,71 @@
+{
+    "API": {
+        "public": [{
+            "method": "get",
+            "url": "/get/allNavs",
+            "run": [
+                "SELECT * FROM NavBar;"
+            ],
+            "return": [
+                "SELECT * FROM NavBar;"
+            ]
+        }],
+        "admin": [{
+            "method": "post",
+            "url": "/get/whatever2",
+            "run": [
+                "SELECT * FROM Table12;"
+            ],
+            "return": [
+                "SELECT * FROM Table12;",
+                "SELECT * FROM Table12;"
+            ]
+        }],
+        "admin_ver": "/admin/verification"
+    }, 
+    "tables": [{
+        "name": "NavBar",
+        "columns": [
+            "_id BIGSERIAL UNIQUE PRIMARY KEY",
+            "parentid INTEGER",
+            "position SMALLINT",
+            "name VARCHAR",
+            "url VARCHAR"
+        ]
+    }],
+    "onDatabaseInit": [
+        "INSERT INTO NavBar (parentid, position, name, url) VALUES (0, 8, 'Test1', 'Test1');",
+        "INSERT INTO NavBar (parentid, position, name, url) VALUES (0, 9, 'Test2', 'Test2');",
+        "INSERT INTO NavBar (parentid, position, name, url) VALUES (0, 10, 'Test3', 'Test3');",
+        "INSERT INTO NavBar (parentid, position, name, url) VALUES (0, 11, 'Test4', 'Test4');",
+        "INSERT INTO NavBar (parentid, position, name, url) VALUES (0, 12, 'Test5', 'Test5');"
+
+    ],
+    "dotenv": {
+        "Admin_Password": "test123",
+        "Request_Origin": "http://localhost:3000",
+
+        "PORT": "3001",
+        "PGPORT": "5432",
+        "New_database_name": "newdb10",
+        "PGHOST": "localhost",
+        "PGPASSWORD": "Jdbeuz538",
+        
+        "PGUSER": "postgres",
+        "PGDATABASE": "postgres"
+    },
+    "createNextApp": true,
+    "onlyUpdateNextApp": true,
+    "next_console_commands": [
+        "cd ../server",
+        "npx create-next-app .",
+        "npm i pg",
+        "npm i dotenv",
+        "npm i bcrypt",
+        "cd ../run",
+        "node onNextJsInit.js",
+        "cd ../server/db",
+        "node init.js",
+        "npm run dev"
+    ]
+}
